@@ -1,10 +1,13 @@
 package service;
 
-import model.Progress;
-import model.FitnessGoal;
 import java.util.List;
+import model.FitnessGoal;
+import model.Progress;
 
 public class ProgressService {
+
+    public static final String PROGRESS_FILE = "data/progress.csv";
+    public static final String GOALS_FILE = "data/goals.csv";
 
     public ProgressService() {
         // TODO: implement
@@ -39,5 +42,15 @@ public class ProgressService {
 
     public void updateFitnessGoal(FitnessGoal goal) {
         // TODO: implement
+    }
+
+    /** Writes progress records and fitness goals to their CSV files. */
+    public void save() {
+        // TODO: implement (Julius) - persistence
+    }
+
+    /** Loads progress records and fitness goals. Starts empty if the files are missing. */
+    public void load() {
+        // TODO: implement (Julius) - persistence
     }
 }

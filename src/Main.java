@@ -1,6 +1,6 @@
+import service.ProgressService;
 import service.UserService;
 import service.WorkoutService;
-import service.ProgressService;
 import ui.MainMenu;
 
 public class Main {
@@ -9,7 +9,15 @@ public class Main {
         WorkoutService workoutService = new WorkoutService();
         ProgressService progressService = new ProgressService();
 
+        userService.load();
+        workoutService.load();
+        progressService.load();
+
         MainMenu mainMenu = new MainMenu(userService, workoutService, progressService);
         mainMenu.start();
+
+        userService.save();
+        workoutService.save();
+        progressService.save();
     }
 }

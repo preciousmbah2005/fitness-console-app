@@ -35,6 +35,30 @@ Main → UI (MainMenu) → Services (User/Workout/Progress) → Models → Stora
 
 ---
 
+## Persistence Contract
+
+Each service owns its own files and exposes `save()` / `load()`. `Main` calls
+`load()` on every service at startup and `save()` on every service at shutdown —
+services never read or write files on their own during normal operation.
+
+| Service | Files |
+|---|---|
+| `UserService` | `data/users.csv` |
+| `WorkoutService` | `data/exercises.csv`, `data/workouts.csv`, `data/sessions.csv` |
+| `ProgressService` | `data/progress.csv`, `data/goals.csv` |
+
+**Format rules:**
+- Comma-separated, one record per line, **no header row**.
+- First column is always the entity `id` (UUID string).
+- Dates are ISO-8601 (`yyyy-MM-dd`), i.e. `LocalDate.toString()` / `LocalDate.parse()`.
+- Free-text fields (`description`, `notes`) must not contain commas or newlines —
+  strip them on input rather than escaping.
+- A missing file is not an error: `load()` starts with an empty collection.
+- `workouts.csv` stores its exercises as a `;`-separated list of exercise ids in
+  the last column, resolved against `exercises.csv` after both are loaded.
+
+---
+
 ## Project Structure
 
 ```

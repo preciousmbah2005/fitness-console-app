@@ -1,11 +1,15 @@
 package service;
 
-import model.Workout;
-import model.Exercise;
-import model.WorkoutSession;
 import java.util.List;
+import model.Exercise;
+import model.Workout;
+import model.WorkoutSession;
 
 public class WorkoutService {
+
+    public static final String EXERCISES_FILE = "data/exercises.csv";
+    public static final String WORKOUTS_FILE = "data/workouts.csv";
+    public static final String SESSIONS_FILE = "data/sessions.csv";
 
     public WorkoutService() {
         // TODO: implement
@@ -54,5 +58,15 @@ public class WorkoutService {
     public List<WorkoutSession> getWorkoutSessionsByUserId(String userId) {
         // TODO: implement
         return null;
+    }
+
+    /** Writes exercises, workouts and sessions to their CSV files. */
+    public void save() {
+        // TODO: implement (Julius) - persistence
+    }
+
+    /** Loads exercises, workouts and sessions. Starts empty if the files are missing. */
+    public void load() {
+        // TODO: implement (Julius) - persistence
     }
 }
